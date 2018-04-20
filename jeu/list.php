@@ -23,7 +23,7 @@ require_once('../tpl/header.tpl');
 <table>
 	<thead>
 		<tr>
-			<th>Nom (année)</th>
+			<th>Titre (année)</th>
 			<th>Editeur / Développeur</th>
 			<th>Actions</th>
 		</tr>
