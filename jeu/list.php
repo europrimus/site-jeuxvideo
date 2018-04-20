@@ -20,6 +20,7 @@ foreach ($res as $jeu) {
 require_once('../tpl/header.tpl');
 
 ?>
+<a href="add.php">Ajouter un jeu</a>
 <table>
 	<thead>
 		<tr>

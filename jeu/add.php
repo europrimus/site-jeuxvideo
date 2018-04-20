@@ -29,9 +29,9 @@ require_once('../tpl/header.tpl');
 		<dt>Développeur (<input type="checkbox" name="devedi"> = éditeur)</dt>
 		<dd><input type="text" name="developpeur"></dd>
 	</dl>
-	<input type="submit" name="confirmation" value="Ajouter">
+	<input type="submit" name="confirmation" value="Ajouter"> <a href="list.php"><button type="button">Retourner à la liste</button></a>
 </form>
-<a href="list.php">Retourner à la liste</a>
+
 <?php
 
 require_once('../tpl/footer.tpl');
