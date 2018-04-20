@@ -8,12 +8,14 @@ $res = $pdo->query("SELECT * FROM jeu")->fetchAll(PDO::FETCH_ASSOC);
 $jeux = [];
 foreach ($res as $jeu) {
 	$j = new Jeu();
-	$jeux[] = $j->setId($jeu['id'])
-				->setTitre($jeu['titre'])
-				->setAnnee($jeu['annee'])
-				->setDeveloppeur($jeu['developpeur'])
-				->setEditeur($jeu['editeur']);
+	$j->setId($jeu['id'])
+		->setTitre($jeu['titre'])
+		->setAnnee($jeu['annee'])
+		->setDeveloppeur($jeu['developpeur'])
+		->setEditeur($jeu['editeur']);
+	$jeux[] = $j;
 }
+
 
 require_once('../tpl/header.tpl');
 
