@@ -47,10 +47,9 @@ require_once('../tpl/header.tpl');
 		<dt>Développeur</dt>
 		<dd><input type="text" name="developpeur" value="<?=$j->getDeveloppeur()?>"></dd>
 	</dl>
-	<input type="submit" name="confirmation" value="Modifier">
+	<input type="submit" name="confirmation" value="Modifier"> <a href="view.php?id=<?=$j->getId()?>"><button type="button">Annuler les modifications</button></a>
 </form>
 <ul>
-	<li><a href="view.php?id=<?=$j->getId()?>">Annuler les modifications</a></li>
 	<li><a href="delete.php?id=<?=$j->getId()?>">Supprimer</a></li>
 	<li><a href="list.php">Retourner à la liste</a></li>
 </ul>
