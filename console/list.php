@@ -35,7 +35,7 @@ require_once('../tpl/header.tpl');
 		<tr>
 			<td><?=$console->getNom()." (".$console->getSigle().")"?></td>
 			<td><?=$console->getPuissance()?></td>
-			<td><?=$console->getConstructeur()." / ".$console->getDatesortie()?></td>
+			<td><?=$console->getConstructeur()." / ".$console->getDatesortie(true)?></td>
 			<td><a href="view.php?id=<?=$console->getId()?>">Voir</a> <a href="edit.php?id=<?=$console->getId()?>">Modifier</a> <a href="delete.php?id=<?=$console->getId()?>">Supprimer</a></td>
 		</tr>
 		<?php endforeach; ?>
