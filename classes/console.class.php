@@ -47,12 +47,13 @@ class Console {
 		return $this;
 	}
 
-	public function getDatesortie() {
-		return $this->datesortie;
+	public function getDatesortie($nice = false) {
+		if (!$nice) return $this->datesortie->format('Y-m-d');
+		else return $this->datesortie->format('d/m/Y');
 	}
 
 	public function setDatesortie($datesortie) {
-		$this->datesortie = $datesortie;
+		$this->datesortie = new DateTime($datesortie);
 		return $this;
 	}
 
