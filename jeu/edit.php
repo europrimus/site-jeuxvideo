@@ -8,11 +8,10 @@ if (!isset($_GET['id'])) {
 require_once('../inc/connecteur.php');
 
 if (isset($_POST['confirmation'])) {
-	$stmt = $pdo->prepare("UPDATE jeu SET titre = :titre, annee = :annee, developpeur = :developpeur, editeur = :editeur WHERE id = :id");
+	$stmt = $pdo->prepare("UPDATE jeu SET titre = :titre, developpeur = :developpeur, editeur = :editeur WHERE id = :id");
 	$stmt->execute([
 		'id' => $_GET['id'],
 		'titre' => $_POST['titre'],
-		'annee' => $_POST['annee'],
 		'developpeur' => $_POST['developpeur'],
 		'editeur' => $_POST['editeur']
 	]);
@@ -29,7 +28,6 @@ $jeu = $stmt->fetch(PDO::FETCH_ASSOC);
 $j = new Jeu();
 $j->setId($jeu['id'])
 	->setTitre($jeu['titre'])
-	->setAnnee($jeu['annee'])
 	->setDeveloppeur($jeu['developpeur'])
 	->setEditeur($jeu['editeur']);
 
@@ -40,8 +38,6 @@ require_once('../tpl/header.tpl');
 	<dl>
 		<dt>Titre</dt>
 		<dd><input type="text" name="titre" value="<?=$j->getTitre()?>"></dd>
-		<dt>Année</dt>
-		<dd><input type="number" name="annee" value="<?=$j->getAnnee()?>"></dd>
 		<dt>Éditeur</dt>
 		<dd><input type="text" name="editeur" value="<?=$j->getEditeur()?>"></dd>
 		<dt>Développeur</dt>

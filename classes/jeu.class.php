@@ -4,7 +4,6 @@ class Jeu {
 
 	private $id;
 	private $titre;
-	private $annee;
 	private $developpeur;
 	private $editeur;
 
@@ -25,15 +24,6 @@ class Jeu {
 
 	public function setTitre($titre) {
 		$this->titre = $titre;
-		return $this;
-	}
-
-	public function getAnnee() {
-		return $this->annee;
-	}
-
-	public function setAnnee($annee) {
-		$this->annee = $annee;
 		return $this;
 	}
 

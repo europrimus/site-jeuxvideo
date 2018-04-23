@@ -16,7 +16,6 @@ $jeu = $stmt->fetch(PDO::FETCH_ASSOC);
 $j = new Jeu();
 $j->setId($jeu['id'])
 	->setTitre($jeu['titre'])
-	->setAnnee($jeu['annee'])
 	->setDeveloppeur($jeu['developpeur'])
 	->setEditeur($jeu['editeur']);
 
@@ -26,8 +25,6 @@ require_once('../tpl/header.tpl');
 <dl>
 	<dt>Titre</dt>
 	<dd><?=$j->getTitre()?></dd>
-	<dt>Année</dt>
-	<dd><?=$j->getAnnee()?></dd>
 	<dt>Éditeur</dt>
 	<dd><?=$j->getEditeur()?></dd>
 	<dt>Développeur</dt>
