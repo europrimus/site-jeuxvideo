@@ -7,6 +7,8 @@ class Version {
 	private $console;
 	private $datesortie;
 	private $typesortie;
+	private $developpeur;
+	private $editeur;
 
 	public function getId() {
 		return $this->id;
@@ -53,6 +55,24 @@ class Version {
 
 	public function setTypesortie($typesortie) {
 		$this->typesortie = $typesortie;
+		return $this;
+	}
+
+	public function getDeveloppeur() {
+		return $this->developpeur;
+	}
+
+	public function setDeveloppeur($developpeur) {
+		$this->developpeur = $developpeur;
+		return $this;
+	}
+
+	public function getEditeur() {
+		return $this->editeur;
+	}
+
+	public function setEditeur($editeur) {
+		$this->editeur = $editeur;
 		return $this;
 	}
 }

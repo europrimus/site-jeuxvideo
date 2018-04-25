@@ -3,12 +3,15 @@
 require_once('../inc/connecteur.php');
 
 if (isset($_POST['confirmation'])) {
-	$stmt = $pdo->prepare("INSERT INTO version (idjeu, idconsole, typesortie, datesortie) VALUES (:idjeu, :idconsole, :typesortie, :datesortie)");
+	if (isset($_POST['devedi'])) $_POST['developpeur'] = $_POST['editeur'];
+	$stmt = $pdo->prepare("INSERT INTO version (idjeu, idconsole, typesortie, datesortie, developpeur, editeur) VALUES (:idjeu, :idconsole, :typesortie, :datesortie, :developpeur, :editeur)");
 	$stmt->execute([
 		'idjeu' => $_POST['jeu'],
 		'idconsole' => $_POST['console'],
 		'typesortie' => $_POST['typesortie'],
-		'datesortie' => $_POST['datesortie']
+		'datesortie' => $_POST['datesortie'],
+		'developpeur' => $_POST['developpeur'],
+		'editeur' => $_POST['editeur']
 	]);
 	header('Location: view.php?id='.$pdo->lastInsertId());
 	exit;
@@ -43,6 +46,10 @@ require_once('../tpl/header.tpl');
 			<option value="<?=$libelle?>"><?=$libelle?></option>
 			<?php endforeach; ?>
 		</select></dd>
+		<dt>Éditeur</dt>
+		<dd><input type="text" name="editeur"></dd>
+		<dt>Développeur (<input type="checkbox" name="devedi"> = éditeur)</dt>
+		<dd><input type="text" name="developpeur"></dd>
 	</dl>
 	<input type="submit" name="confirmation" value="Ajouter"> <a href="list.php"><button type="button">Retourner à la liste</button></a>
 </form>

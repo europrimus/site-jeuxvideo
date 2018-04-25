@@ -4,8 +4,6 @@ class Jeu {
 
 	private $id;
 	private $titre;
-	private $developpeur;
-	private $editeur;
 
 	public function getId() {
 		return $this->id;
@@ -24,24 +22,6 @@ class Jeu {
 
 	public function setTitre($titre) {
 		$this->titre = $titre;
-		return $this;
-	}
-
-	public function getDeveloppeur() {
-		return $this->developpeur;
-	}
-
-	public function setDeveloppeur($developpeur) {
-		$this->developpeur = $developpeur;
-		return $this;
-	}
-
-	public function getEditeur() {
-		return $this->editeur;
-	}
-
-	public function setEditeur($editeur) {
-		$this->editeur = $editeur;
 		return $this;
 	}
 }

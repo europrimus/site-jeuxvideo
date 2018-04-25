@@ -38,3 +38,16 @@ INSERT INTO version(datesortie, idjeu, idconsole)
 SELECT annee, id, 1 FROM jeu;
 
 ALTER TABLE jeu DROP COLUMN annee;
+
+-- r3
+
+ALTER TABLE version ADD COLUMN editeur varchar(50) NOT NULL DEFAULT 'edi', ADD COLUMN developpeur varchar(50) NOT NULL DEFAULT 'dev';
+
+UPDATE version
+SET editeur = jeu.editeur, developpeur = jeu.developpeur
+FROM jeu
+WHERE jeu.id = version.idjeu;
+
+ALTER TABLE version ALTER COLUMN editeur DROP DEFAULT, ALTER COLUMN developpeur DROP DEFAULT;
+
+ALTER TABLE jeu DROP COLUMN editeur, DROP COLUMN developpeur;
