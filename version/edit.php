@@ -59,7 +59,7 @@ require_once('../tpl/header.tpl');
 			<?php endforeach; ?>
 		</select></dd>
 		<dt>Titre</dt>
-		<dd><input type="text" name="titre" <?php if (!is_array($j->getTitre(false))): ?>value="<?=$j->getTitre(false)?>"<?php endif; ?></dd>
+		<dd><input type="text" name="titre" <?php if (!is_array($j->getTitre(false))): ?>value="<?=$j->getTitre(false)?>"<?php endif; ?>></dd>
 		<dt>Console</dt>
 		<dd><select name="console">
 			<?php foreach ($consoles as $id => $nom): ?>
