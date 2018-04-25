@@ -8,12 +8,10 @@ if (!isset($_GET['id'])) {
 require_once('../inc/connecteur.php');
 
 if (isset($_POST['confirmation'])) {
-	$stmt = $pdo->prepare("UPDATE jeu SET titre = :titre, developpeur = :developpeur, editeur = :editeur WHERE id = :id");
+	$stmt = $pdo->prepare("UPDATE jeu SET titre = :titre WHERE id = :id");
 	$stmt->execute([
 		'id' => $_GET['id'],
-		'titre' => $_POST['titre'],
-		'developpeur' => $_POST['developpeur'],
-		'editeur' => $_POST['editeur']
+		'titre' => $_POST['titre']
 	]);
 	header('Location: view.php?id='.$_GET['id']);
 	exit;
@@ -27,9 +25,7 @@ $jeu = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $j = new Jeu();
 $j->setId($jeu['id'])
-	->setTitre($jeu['titre'])
-	->setDeveloppeur($jeu['developpeur'])
-	->setEditeur($jeu['editeur']);
+	->setTitre($jeu['titre']);
 
 require_once('../tpl/header.tpl');
 
@@ -38,10 +34,6 @@ require_once('../tpl/header.tpl');
 	<dl>
 		<dt>Titre</dt>
 		<dd><input type="text" name="titre" value="<?=$j->getTitre()?>"></dd>
-		<dt>Éditeur</dt>
-		<dd><input type="text" name="editeur" value="<?=$j->getEditeur()?>"></dd>
-		<dt>Développeur</dt>
-		<dd><input type="text" name="developpeur" value="<?=$j->getDeveloppeur()?>"></dd>
 	</dl>
 	<input type="submit" name="confirmation" value="Modifier"> <a href="view.php?id=<?=$j->getId()?>"><button type="button">Annuler les modifications</button></a>
 </form>

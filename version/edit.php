@@ -8,13 +8,15 @@ if (!isset($_GET['id'])) {
 require_once('../inc/connecteur.php');
 
 if (isset($_POST['confirmation'])) {
-	$stmt = $pdo->prepare("UPDATE version SET datesortie = :datesortie, typesortie = :typesortie, idjeu = :idjeu, idconsole = :idconsole WHERE id = :id");
+	$stmt = $pdo->prepare("UPDATE version SET datesortie = :datesortie, typesortie = :typesortie, idjeu = :idjeu, idconsole = :idconsole, developpeur = :developpeur, editeur = :editeur WHERE id = :id");
 	$stmt->execute([
 		'id' => $_GET['id'],
 		'datesortie' => $_POST['datesortie'],
 		'typesortie' => $_POST['typesortie'],
 		'idjeu' => $_POST['jeu'],
-		'idconsole' => $_POST['console']
+		'idconsole' => $_POST['console'],
+		'developpeur' => $_POST['developpeur'],
+		'editeur' => $_POST['editeur']
 	]);
 	header('Location: view.php?id='.$_GET['id']);
 	exit;
@@ -35,7 +37,9 @@ $j->setId($jeu['id'])
 	->setJeu(['id' => $jeu['idjeu'], 'titre' => $jeu['titrejeu']])
 	->setConsole(['id' => $jeu['idconsole'], 'nom' => $jeu['nomconsole']])
 	->setDatesortie($jeu['datesortie'])
-	->setTypesortie($jeu['typesortie']);
+	->setTypesortie($jeu['typesortie'])
+	->setDeveloppeur($jeu['developpeur'])
+	->setEditeur($jeu['editeur']);
 
 $consoles = array_map('reset', $pdo->query("SELECT id, nom FROM console")->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP));
 $jeux = array_map('reset', $pdo->query("SELECT id, titre FROM jeu")->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP));
@@ -66,6 +70,10 @@ require_once('../tpl/header.tpl');
 			<option <?php if($libelle === $j->getTypesortie()):?>selected<?php endif; ?> value="<?=$libelle?>"><?=$libelle?></option>
 			<?php endforeach; ?>
 		</select></dd>
+		<dt>Éditeur</dt>
+		<dd><input type="text" name="editeur" value="<?=$j->getEditeur()?>"></dd>
+		<dt>Développeur</dt>
+		<dd><input type="text" name="developpeur" value="<?=$j->getDeveloppeur()?>"></dd>
 	</dl>
 	<input type="submit" name="confirmation" value="Modifier"> <a href="view.php?id=<?=$j->getId()?>"><button type="button">Annuler les modifications</button></a>
 </form>
