@@ -4,9 +4,10 @@ require_once('../inc/connecteur.php');
 
 if (isset($_POST['confirmation'])) {
 	if (isset($_POST['devedi'])) $_POST['developpeur'] = $_POST['editeur'];
-	$stmt = $pdo->prepare("INSERT INTO version (idjeu, idconsole, typesortie, datesortie, developpeur, editeur) VALUES (:idjeu, :idconsole, :typesortie, :datesortie, :developpeur, :editeur)");
+	$stmt = $pdo->prepare("INSERT INTO version (idjeu, idconsole, typesortie, datesortie, developpeur, editeur, titre) VALUES (:idjeu, :idconsole, :typesortie, :datesortie, :developpeur, :editeur, :titre)");
 	$stmt->execute([
 		'idjeu' => $_POST['jeu'],
+		'titre' => $_POST['titre']?:null,
 		'idconsole' => $_POST['console'],
 		'typesortie' => $_POST['typesortie'],
 		'datesortie' => $_POST['datesortie'],
@@ -32,6 +33,8 @@ require_once('../tpl/header.tpl');
 			<option value="<?=$id?>"><?=$nom?></option>
 			<?php endforeach; ?>
 		</select></dd>
+		<dt>Titre (si différent)</dt>
+		<dd><input type="text" name="titre"></dd>
 		<dt>Console</dt>
 		<dd><select name="console">
 			<?php foreach ($consoles as $id => $nom): ?>

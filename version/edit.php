@@ -8,9 +8,10 @@ if (!isset($_GET['id'])) {
 require_once('../inc/connecteur.php');
 
 if (isset($_POST['confirmation'])) {
-	$stmt = $pdo->prepare("UPDATE version SET datesortie = :datesortie, typesortie = :typesortie, idjeu = :idjeu, idconsole = :idconsole, developpeur = :developpeur, editeur = :editeur WHERE id = :id");
+	$stmt = $pdo->prepare("UPDATE version SET datesortie = :datesortie, typesortie = :typesortie, idjeu = :idjeu, idconsole = :idconsole, developpeur = :developpeur, editeur = :editeur, titre = :titre WHERE id = :id");
 	$stmt->execute([
 		'id' => $_GET['id'],
+		'titre' => $_POST['titre']?:null,
 		'datesortie' => $_POST['datesortie'],
 		'typesortie' => $_POST['typesortie'],
 		'idjeu' => $_POST['jeu'],
@@ -34,6 +35,7 @@ $jeu = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $j = new Version();
 $j->setId($jeu['id'])
+	->setTitre($jeu['titre'])
 	->setJeu(['id' => $jeu['idjeu'], 'titre' => $jeu['titrejeu']])
 	->setConsole(['id' => $jeu['idconsole'], 'nom' => $jeu['nomconsole']])
 	->setDatesortie($jeu['datesortie'])
@@ -56,6 +58,8 @@ require_once('../tpl/header.tpl');
 			<option <?php if($id === $j->getJeu()['id']):?>selected<?php endif; ?> value="<?=$id?>"><?=$nom?></option>
 			<?php endforeach; ?>
 		</select></dd>
+		<dt>Titre</dt>
+		<dd><input type="text" name="titre" <?php if (!is_array($j->getTitre(false))): ?>value="<?=$j->getTitre(false)?>"<?php endif; ?></dd>
 		<dt>Console</dt>
 		<dd><select name="console">
 			<?php foreach ($consoles as $id => $nom): ?>

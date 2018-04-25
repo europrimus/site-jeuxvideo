@@ -9,6 +9,7 @@ class Version {
 	private $typesortie;
 	private $developpeur;
 	private $editeur;
+	private $titre;
 
 	public function getId() {
 		return $this->id;
@@ -73,6 +74,17 @@ class Version {
 
 	public function setEditeur($editeur) {
 		$this->editeur = $editeur;
+		return $this;
+	}
+
+	public function getTitre($nice = true) {
+		if (is_null($this->titre)) return $this->getJeu();
+		if ($nice) return $this->titre." (".$this->getJeu().")";
+		else return $this->titre;
+	}
+
+	public function setTitre($titre) {
+		$this->titre = $titre;
 		return $this;
 	}
 }

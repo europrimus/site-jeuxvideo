@@ -20,6 +20,7 @@ $jeu = $stmt->fetch(PDO::FETCH_ASSOC);
 $j = new Version();
 $j->setId($jeu['id'])
 	->setJeu($jeu['titrejeu'])
+	->setTitre($jeu['titre'])
 	->setConsole($jeu['nomconsole'])
 	->setDatesortie($jeu['datesortie'])
 	->setTypesortie($jeu['typesortie'])
@@ -32,6 +33,8 @@ require_once('../tpl/header.tpl');
 <dl>
 	<dt>Jeu</dt>
 	<dd><?=$j->getJeu()?></dd>
+	<dt>Titre</dt>
+	<dd><?=$j->getTitre()?></dd>
 	<dt>Console</dt>
 	<dd><?=$j->getConsole()?></dd>
 	<dt>Date de sortie</dt>

@@ -16,7 +16,7 @@ if (isset($_POST['confirmation'])) {
 
 require_once('../classes/version.class.php');
 
-$stmt = $pdo->prepare("SELECT version.id, jeu.titre, console.nom
+$stmt = $pdo->prepare("SELECT version.id, COALESCE(version.titre, jeu.titre) titre, console.nom
 	FROM version
 	JOIN jeu ON jeu.id = version.idjeu
 	JOIN console ON console.id = version.idconsole

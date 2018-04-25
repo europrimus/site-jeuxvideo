@@ -14,6 +14,7 @@ foreach ($res as $jeu) {
 	$v = new Version();
 	$v->setId($jeu['id'])
 		->setJeu($jeu['jeu'])
+		->setTitre($jeu['titre'])
 		->setConsole($jeu['console'])
 		->setDatesortie($jeu['datesortie'])
 		->setTypesortie($jeu['typesortie'])
@@ -29,7 +30,7 @@ require_once('../tpl/header.tpl');
 <table>
 	<thead>
 		<tr>
-			<th>Titre</th>
+			<th>Jeu</th>
 			<th>Console (sigle)</th>
 			<th>Type de sortie</th>
 			<th>Date de sortie</th>
@@ -40,7 +41,7 @@ require_once('../tpl/header.tpl');
 	<tbody>
 		<?php foreach ($jeux as $jeu): ?>
 		<tr>
-			<td><?=$jeu->getJeu()?></td>
+			<td><?=$jeu->getTitre()?></td>
 			<td><?=$jeu->getConsole()?></td>
 			<td><?=$jeu->getTypesortie()?></td>
 			<td><?=$jeu->getDatesortie(true)?></td>
