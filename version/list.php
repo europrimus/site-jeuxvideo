@@ -16,7 +16,9 @@ foreach ($res as $jeu) {
 		->setJeu($jeu['jeu'])
 		->setConsole($jeu['console'])
 		->setDatesortie($jeu['datesortie'])
-		->setTypesortie($jeu['typesortie']);
+		->setTypesortie($jeu['typesortie'])
+		->setDeveloppeur($jeu['developpeur'])
+		->setEditeur($jeu['editeur']);
 	$jeux[] = $v;
 }
 
@@ -31,6 +33,7 @@ require_once('../tpl/header.tpl');
 			<th>Console (sigle)</th>
 			<th>Type de sortie</th>
 			<th>Date de sortie</th>
+			<th>Editeur / Développeur</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -41,6 +44,7 @@ require_once('../tpl/header.tpl');
 			<td><?=$jeu->getConsole()?></td>
 			<td><?=$jeu->getTypesortie()?></td>
 			<td><?=$jeu->getDatesortie(true)?></td>
+			<td><?=$jeu->getEditeur()." / ".$jeu->getDeveloppeur()?></td>
 			<td><a href="view.php?id=<?=$jeu->getId()?>">Voir</a> <a href="edit.php?id=<?=$jeu->getId()?>">Modifier</a> <a href="delete.php?id=<?=$jeu->getId()?>">Supprimer</a></td>
 		</tr>
 		<?php endforeach; ?>
