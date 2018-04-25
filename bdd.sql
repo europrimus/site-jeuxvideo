@@ -51,3 +51,18 @@ WHERE jeu.id = version.idjeu;
 ALTER TABLE version ALTER COLUMN editeur DROP DEFAULT, ALTER COLUMN developpeur DROP DEFAULT;
 
 ALTER TABLE jeu DROP COLUMN editeur, DROP COLUMN developpeur;
+
+-- r4
+
+ALTER TYPE typesortie ADD VALUE 'compilation' AFTER 'portage';
+
+CREATE TYPE typedlc AS ENUM ('pack de démarrage', 'objet', 'personnage', 'option supplémentaire', 'chapitre');
+
+CREATE TABLE dlc (
+	id serial PRIMARY KEY,
+	titre varchar(200) NOT NULL,
+	idjeu int NOT NULL REFERENCES jeu(id),
+	typecontenu typedlc NOT NULL DEFAULT 'objet'
+);
+
+ALTER TABLE version ADD COLUMN titre varchar(200) DEFAULT NULL;
