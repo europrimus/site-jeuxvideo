@@ -22,7 +22,9 @@ $j->setId($jeu['id'])
 	->setJeu($jeu['titrejeu'])
 	->setConsole($jeu['nomconsole'])
 	->setDatesortie($jeu['datesortie'])
-	->setTypesortie($jeu['typesortie']);
+	->setTypesortie($jeu['typesortie'])
+	->setDeveloppeur($jeu['developpeur'])
+	->setEditeur($jeu['editeur']);
 
 require_once('../tpl/header.tpl');
 
@@ -36,6 +38,10 @@ require_once('../tpl/header.tpl');
 	<dd><?=$j->getDatesortie(true)?></dd>
 	<dt>Type</dt>
 	<dd><?=$j->getTypesortie()?></dd>
+	<dt>Éditeur</dt>
+	<dd><?=$j->getEditeur()?></dd>
+	<dt>Développeur</dt>
+	<dd><?=$j->getDeveloppeur()?></dd>
 </dl>
 <ul>
 	<li><a href="edit.php?id=<?=$j->getId()?>">Modifier</a></li>
