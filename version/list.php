@@ -27,7 +27,7 @@ require_once('../tpl/header.tpl');
 
 ?>
 <a href="add.php">Ajouter une version</a>
-<?php if (!count($dlcs)): ?><p>Pas de versions de jeux dans la base pour l'instant</p><?php else: ?>
+<?php if (!count($jeux)): ?><p>Pas de versions de jeux dans la base pour l'instant</p><?php else: ?>
 <table>
 	<thead>
 		<tr>
