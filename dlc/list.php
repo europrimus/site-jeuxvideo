@@ -22,6 +22,7 @@ require_once('../tpl/header.tpl');
 
 ?>
 <a href="add.php">Ajouter un DLC</a>
+<?php if (!count($dlcs)): ?><p>Pas de DLCs dans la base pour l'instant</p><?php else: ?>
 <table>
 	<thead>
 		<tr>
@@ -42,6 +43,6 @@ require_once('../tpl/header.tpl');
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<?php
+<?php endif;
 
 require_once('../tpl/footer.tpl');
